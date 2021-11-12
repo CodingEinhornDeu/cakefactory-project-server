@@ -12,12 +12,12 @@ const userSchema = new Schema(
       unique: true
     },
     password: String,
-    
-    isAdmin: {
-      type: Boolean,
-      required: true,
-      default: false
-  }
+
+    // isAdmin: {
+    //   type: Boolean,
+    //   required: true,
+    //   default: false
+    // }
   },
   {
     // this object adds extra properties: `createdAt` and `updatedAt`
