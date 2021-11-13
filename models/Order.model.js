@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const orderSchema =  new Schema({
+const orderSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -20,10 +20,10 @@ const orderSchema =  new Schema({
       }
     }
   ],
-}, 
-{
-  timestamps: true
-})
+},
+  {
+    timestamps: true
+  })
 
 
 const Order = model("Order", orderSchema);
