@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
-const productSchema = new Schema({
+const productSchema = new Schema ({
+
     name: {
         type: String,
         required: true
@@ -20,7 +21,9 @@ const productSchema = new Schema({
         type: Number,
         required: true,
         default: 0
-    }
+    },
+
+
 }, {
     timestamps: true
 })

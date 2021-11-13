@@ -4,13 +4,13 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      unique: true
+      // unique: true,
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
+    // email: {
+    //   type: String,
+    //   required: true,
+    //   unique: true
+    // },
     password: String,
 
     // isAdmin: {
