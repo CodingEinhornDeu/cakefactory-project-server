@@ -21,6 +21,13 @@ app.use("/api", allRoutes);
 
 const productRouter = require('./routes/product.routes');
 app.use("/api", productRouter);
+
+const orderRouter = require('./routes/order.routes');
+app.use("/api", orderRouter);
+
+const indexRouter = require("./routes/index")
+app.use("/", indexRouter);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
