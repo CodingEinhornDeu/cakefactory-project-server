@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+// const isLoggedIn = require('../middleware/isLoggedIn');
 const Order = require("../models/Order.model");
 const User = require("../models/User.model");
 
 // create order
 router.post('/orders', (req, res, next) => {
-
-  const { owner, itemsOrdered, title } = req.body;
+  console.log(req.body)
+  const { itemsOrdered } = req.body;
   Order.create({
-    owner,
+    owner: req.session.user,
     itemsOrdered,
   })
     .then(response => res.json(response))
@@ -19,6 +20,7 @@ router.post('/orders', (req, res, next) => {
 // get the order from DB
 router.get('/orders', (req, res, next) => {
   Order.find()
+  .populate('owner')
     .then(allOrders => res.json(allOrders))
     .catch(err => res.json(err));
 });

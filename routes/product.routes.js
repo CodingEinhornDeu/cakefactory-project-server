@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const isLoggedIn = require('../middleware/isLoggedIn');
 const Product = require("../models/Product.model");
 
 // get all products fromDB 
@@ -28,8 +29,8 @@ router.get('/products/:productId', (req, res, next) => {
     return;
   }
   Product.findById(productId)
-  .then(product => res.status(200).json(product))
-  .catch(error =>res.json(error));
+    .then(product => res.status(200).json(product))
+    .catch(error => res.json(error));
 })
 
 // to update product
