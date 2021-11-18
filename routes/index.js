@@ -6,6 +6,7 @@ router.get("/", (req, res, next) => {
   res.json("All good in here");
 });
 
-router.use("/auth", authRoutes);
+router.use("/api", authRoutes);
 
 module.exports = router;
+
