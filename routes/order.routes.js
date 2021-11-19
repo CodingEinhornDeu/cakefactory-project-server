@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-// const isLoggedIn = require('../middleware/isLoggedIn');
+const isLoggedIn = require('../middleware/isLoggedIn');
 const Order = require("../models/Order.model");
 const User = require("../models/User.model");
 
 // create order
-router.post('/orders', (req, res, next) => {
+router.post('/orders', isLoggedIn, (req, res, next) => {
   console.log(req.body)
   const { itemsOrdered } = req.body;
   Order.create({
@@ -20,7 +20,7 @@ router.post('/orders', (req, res, next) => {
 // get the order from DB
 router.get('/orders', (req, res, next) => {
   Order.find()
-  .populate('owner')
+    .populate('owner')
     .then(allOrders => res.json(allOrders))
     .catch(err => res.json(err));
 });
@@ -50,7 +50,18 @@ router.get('/orders/:orderId', (req, res, next) => {
     return;
   }
 
+  // Order.findById(orderId)
+  //   .populate({
+  //     path: 'itemsOrdered',
+  //     populate: {
+  //       path: 'productId'
+  //     }
+  //   })
   Order.findById(orderId)
+    .populate({
+      path: 'itemsOrdered.productId',
+    })
+
     .then(order => res.status(200).json(order))
     .catch(err => res.status(500).json(err));
 });
